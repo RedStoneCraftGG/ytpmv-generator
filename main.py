@@ -37,6 +37,8 @@ def get_longest_note(track: mido.MidiTrack) -> float:
     return max(lengths) if len(lengths) != 0 else 0
 
 def speed_change(segment: AudioSegment, speed: float = 1.0):
+    if len(segment) < 50:  # tentative
+        return segment
     if speed >= 1.0:
         return speed_up(segment, speed, chunk_size=25)
     else:
